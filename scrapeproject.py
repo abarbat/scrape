@@ -23,7 +23,7 @@ def getTableLinks(my_url):
             pass
 
 # creates URLs to top 100 pages
-for n in range(2010, 2015): #change to 2015
+for n in range(2010, 2015):
     mainLinkList = getTableLinks(main + str(n))
 
 def get_tr_list(bsObj):
@@ -57,9 +57,9 @@ def getArtist(bsObj):
 
 def getGenre(bsObj):
     try:
-        for tr in tr_list: #if you see a line in the table
+        for tr in tr_list:
             try:
-                if tr.get_text().find('Genre') > -1 : #and you find the specific string
+                if tr.get_text().find('Genre') > -1 :
                     return tr.td.text.strip()
             except AttributeError as e:
                 return e
@@ -70,9 +70,9 @@ def getGenre(bsObj):
 
 def getLabel(bsObj):
     try:
-        for tr in tr_list: #if you see a line in the table
+        for tr in tr_list:
             try:
-                if tr.get_text().find('Label') > -1 : #and you find the specific string
+                if tr.get_text().find('Label') > -1 :
                     return tr.td.text.strip()
             except AttributeError as e:
                 return e
@@ -83,9 +83,9 @@ def getLabel(bsObj):
 
 def getWriter(bsObj):
     try:
-        for tr in tr_list: #if you see a line in the table
+        for tr in tr_list:
             try:
-                if tr.get_text().find('Writer(s)') > -1 : #and you find the specific string
+                if tr.get_text().find('Writer(s)') > -1 :
                     return tr.td.text.strip()
             except AttributeError as e:
                 return e
@@ -96,9 +96,9 @@ def getWriter(bsObj):
 
 def getProducer(bsObj):
     try:
-        for tr in tr_list: #if you see a line in the table
+        for tr in tr_list:
             try:
-                if tr.get_text().find('Producer(s)') > -1 : #and you find the specific string
+                if tr.get_text().find('Producer(s)') > -1 :
                     return tr.td.text.strip()
             except AttributeError as e:
                 return e
@@ -127,13 +127,6 @@ def goToLink(url):
         for row in songs_list:
             writer.writerow(row)
 
-    # print (
-    # "\n\nTitle: ", title, "\nGenre: ", genre, "\nLabel: ", label, "\nWriter(s): ", writer, "\nProducer(s): ", producer)
-
 # goes through list of paths to get info from each page
 for i in paths:
     goToLink("https://en.wikipedia.org" + i)
-
-
-
-# I think instead of getting the name and title of every song from the top 100 page, I'm using those pages to follow the links and then get all that info from the table in the wikipedia page. That will let me organize the information better
